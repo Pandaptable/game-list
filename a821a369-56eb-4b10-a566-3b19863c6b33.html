@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>STAR WARS: The Old Republic</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> STAR WARS: The Old Republic</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>14h 43m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-9/5/2020">9/5/2020</a> 11:53:28</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:33</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:56:58</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-12/20/2011">12/20/2011</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-85">85</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-BioWare Austin">BioWare Austin</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Electronic Arts">Electronic Arts</a><br/><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-LucasArts">LucasArts</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Massively Multiplayer Online (MMO)">Massively Multiplayer Online (MMO)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://www.swtor.com" target="_blank">Official Website</a><br/><a href="https://en.wikipedia.org/wiki/Star_Wars:_The_Old_Republic" target="_blank">Wikipedia</a><br/><a href="https://www.facebook.com/starwarstheoldrepublic" target="_blank">Facebook</a><br/><a href="https://twitter.com/swtor" target="_blank">Twitter</a><br/><a href="https://www.instagram.com/swtorofficial" target="_blank">Instagram</a><br/><a href="https://www.youtube.com/user/swtheoldrepublic" target="_blank">Youtube</a><br/><a href="https://www.reddit.com/r/swtor" target="_blank">Reddit</a><br/><a href="https://store.steampowered.com/app/1286830" target="_blank">Steam</a><br/><a href="https://discord.com/invite/swtor" target="_blank">Discord</a><br/><a href="https://swtor.fandom.com/wiki/Star_Wars:_The_Old_Republic_Wiki" target="_blank">Wikia</a><br/><a href="https://www.twitch.tv/directory/game/Star Wars: The Old Republic" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					STAR WARS™: The Old Republic™ is the only massively multiplayer online game with a Free-to-Play option that puts you at the center of your own story-driven STAR WARS™ saga. Play as a Jedi, a Sith, a Bounty Hunter, or as one of many other iconic STAR WARS roles and explore the galaxy far, far away over three thousand years before the classic films. With 6 narrative expansions, become the hero of your own STAR WARS adventure as you choose your path down the Light or Dark side of the Force™.<br><br><strong>Create your legacy.</strong> Make meaningful choices throughout your journey and become the hero of your personal STAR WARS saga. The game includes an interactive storyline with cinematic dialogue and full voiceover for all in-game characters.<br><br><strong>A growing world awaits.</strong> For more than 10 years, players have been able to live out their own STAR WARS stories. With the most recent Onslaught expansion, STAR WARS: The Old Republic continues to deliver ongoing content through regular updates.<br><br><strong>8 Unique Stories, 16 Combat Styles.</strong> Do you prefer the elegance of a lightsaber or the reliability of a good blaster by your side? Choose from one of 8 iconic, unique storylines, allowing you to create your own personal STAR WARS story. The Legacy of the Sith Expansion also introduces Combat Styles! Players can now separate their Class Story from gameplay style for an even greater customization experience. This frees up Advanced Class options as characters can choose any Advanced Class within the Tech or Force playstyle! Play as a Trooper wielding a Sniper Rifle, or a Sith Inquisitor with a lightsaber in each hand, or even secretly use Dark Side powers while posing as a member of the Jedi Order.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1286830/extras/about_classes_610w.jpg?t=1645090351" /><br><br><strong>Explore numerous planets.</strong> Hoth, Tatooine, Alderaan, and over 20 other unique and vibrant planets offer exciting exploration and thrilling adventures around every corner!<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1286830/extras/about_planets_610w.jpg?t=1645090351" /><br><br><strong>Multiplayer gameplay. </strong> Gather your allies to face challenging encounters against enemy bosses in Flashpoints and Operations, or battle against other players in Player vs. Player Warzones, Arenas, or Galactic Starfighter missions!<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1286830/extras/about_multiplayer_610w.jpg?t=1645090351" /><br><br><strong>Galactic Strongholds</strong> Want to take a break from the inter-galactic traveling and adventure? Kick back and relax with our player housing system called Galactic Strongholds! Whether it’s overlooking the sandy dunes of Tatooine, the bright cityscape of Nar Shaddaa, or the tranquil mountains of Alderaan, there’s a Stronghold for everyone. These destinations and more are available for your galactic homestead!<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1286830/extras/about_strongholds_610w.jpg?t=1645090351" /><br><br><strong>Cartel Market.</strong> Only the slickest items can make their way to the Cartel Market, the premium marketplace for the galaxy’s most sought-after commodities. Players wishing to buy things here will need to purchase in-game currency called Cartel Coins. Learn more about what Cartel Coins can unlock on our Cartel Coins Page.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1286830/extras/about_cartelmarket_610w.jpg?t=1645090351" /><br><br><strong>Subscriber Benefits.</strong> STAR WARS: The Old Republic offers an optional subscription that allows you to experience even more of the STAR WARS universe.  Benefits include an increased level cap of 80 and access to the most recent expansions: Legacy of the Sith, Onslaught, Knights of the Eternal Throne, and Knights of the Fallen Empire. In addition, you will receive a monthly Cartel Coin Grant, increased XP, and more. Details on Subscriber Benefits can be found on our Subscriber Page. <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1286830/extras/about_subscriber_610w.jpg?t=1645090351" />
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

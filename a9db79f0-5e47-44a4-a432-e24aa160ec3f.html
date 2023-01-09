@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Archeblade</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Archeblade</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>1h 1m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-3/16/2018">3/16/2018</a> 17:38:18</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:33</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:56:17</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/25/2014">4/25/2014</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-50">50</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Fighting">Fighting</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Real Time Strategy (RTS)">Real Time Strategy (RTS)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Codebrush Games">Codebrush Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Codebrush Games">Codebrush Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Operative">Co-Operative</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://www.codebrush.net/" target="_blank">Official Website</a><br/><a href="https://store.steampowered.com/app/207230" target="_blank">Steam</a><br/><a href="https://www.twitch.tv/directory/game/Archeblade" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<ul class="bb_ul"><li><strong>3D Fighting Game</strong><br>Influenced by fighting games such as Street Fighter and Tekken, the game brings more variety by adding MOBA and FPS type game modes. <br></li><li><strong>14 Unique Characters</strong><br>Each with unique combos and rage skills, and designed in semi-anime style, the characters in ArcheBlade are the highlights of the game.  Try different characters and find the one that matches your style.<br></li><li><strong>PvP Multiplayer</strong><br>Playing with your friends or other players online makes a fighting game twice as fun.  Whether to be a team-player or a lone wolf is all up to you.<br></li><li><strong>Maps with different game modes</strong><br>Free for all, Capture the flag, Team Deathmatch are all here. Each map has its own unique game type.  Watch your surroundings as you may get hit by a train, or lose a step and fall off a bridge.<br></li><li><strong>Rage Skills</strong><br>Each character has two distinctive rage skills. Use them in one-on-one or team situations smartly to really turn the tide of battle!<br></li><li><strong>Gear Up your character</strong><br>Gear up to prepare yourself for battle.  By gearing up, you can customize the look of your character as well as add stat boosts.  There are over 500 customizations available, try them all!<br></li><li><strong>Free to Play</strong><br>It’s free to download the game so hop in and join the game!  Don’t forget to invite your friends.  Playing with your friends is a good way to get yourself ready for other more skillful players online.</li></ul> <br>Please scroll down if you want to know more about the game.  Also join our social networking sites to get updated on the game<br> <br>Facebook: <a href="https://steamcommunity.com/linkfilter/?url=https://www.facebook.com/Codebrush" target="_blank" rel=" noopener"  >https://www.facebook.com/Codebrush</a><br>Youtube: <a href="http://www.youtube.com/user/Archeblade" target="_blank" rel=""  >http://www.youtube.com/user/Archeblade</a><br>Twitter: <a href="https://twitter.com/CodeBrush" target="_blank" rel=""  >https://twitter.com/CodeBrush</a><br>Google+: <a href="https://steamcommunity.com/linkfilter/?url=https://plus.google.com/u/0/b/102455548413883590179/102455548413883590179/" target="_blank" rel=" noopener"  >ArcheBlade Google+ Page</a><h2 class="bb_tag">Get ready for ArcheBlade:</h2>Based on a <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=232707240" target="_blank" rel=""  >Korean Fantasy Novel</a>, ArcheBlade is a free-to-play PvP-based multiplayer action game in which users can either take sides and fight against the other team or fight for themselves depending on the map.  Players choose one of several characters, each with their own unique fighting style and action combos. <br> <br>ArcheBlade captures the essence of combo-based fighting games like Street Fighter or Tekken combined with online multiplayer match system. Rather than pressing shortcut keys mindlessly to use skills, players need to pay close attention to their character and their opponents’ moves in order to perform combos as well as block and avoid attacks all happening in real-time.  Do you like fighting games?  Do you enjoy non-stop action?  Are you competitive?  Then this game is for you.<br><br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/207230/extras/ArcheBlade_Official_02_Chracters.jpg?t=1447355405" /><br>Select a fighter of your style!  Each with unique combos and fighting style, each character brings different game to the table.  Find a character that matches your style in Training and perfect your skills.  Please stay tuned as we’re adding more characters in the future.<br><br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/207230/extras/ArcheBlade_Official_03_GearUp1.jpg?t=1447355405" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/207230/extras/ArcheBlade_Official_03_GearUp2.jpg?t=1447355405" /><br>With more than 500 items available, you can customize your character to your preference.  People will definitely notice you when you have items on.<br><br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/207230/extras/ArcheBlade_Official_03_GameMode.jpg?t=1447355405" /><br>From Team Deathmatch and Capture the Base to Free for All and Team Last Man Standing, each game mode has a different goal to accomplish. One more thing to remember.  Always watch your surroundings when you play in a map as you may get hit by a train, or lose a step and fall off the bridge.  More game modes will be added in the future so please stay tuned.<br><br><u><strong>Capture the Base</strong></u><br>Work as a team and defeat the opposing side by capturing the bases scattered around in the map.  Protect your bases or teammates when they’re capturing.  Be on the lookout as you are capturing, there may be someone to interrupt you right at the end.<br><br><u><strong>Team Last Man Standing</strong></u><br>The team with the most round wins will prevail.  Be careful as there are no respawns during rounds.  There’s nothing like being the last survivor and deliver a win for your teammates at the end while they’re all watching you.<br><br><u><strong>Free for All</strong></u><br>No more friendship, just killing.  Are you the type that prefers being a lone wolf?  This is just for you. The rule is simple.  The one who gets the most kills wins the match.  Careful though as there are wolves lurking in the shadow ready to steal your kill.<br><br><u><strong>Team Deathmatch</strong></u><br>A team with more kills wins the match. To get a kill is the biggest contribution you can make to your team here.  Be a support or that guy who’s always at the very front of battle.  Whatever gets kills is good for the team.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/207230/extras/ArcheBlade_Official_04_Seeya.jpg?t=1447355405" />
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

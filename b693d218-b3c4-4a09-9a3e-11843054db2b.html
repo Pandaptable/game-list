@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Baldi&#39;s Basics Plus</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Baldi&#39;s Basics Plus</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:27</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:56:48</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/1/2020">4/1/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Basically, Games!">Basically, Games!</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Basically, Games!">Basically, Games!</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://www.basicallygames.com/baldis-basics-plus.html" target="_blank">Official Website</a><br/><a href="https://store.steampowered.com/app/1275890/Baldis_Basics_Plus/" target="_blank">Steam</a><br/><a href="https://basically-games.itch.io/baldis-basics-plus" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Baldi's%20Basics%20Plus" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_tag_ascending_name_ascending.html#quicklink-[itch.io] Also available on Steam">[itch.io] Also available on Steam</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascending_name_ascending.html#quicklink-[itch.io] Bundle for Ukraine">[itch.io] Bundle for Ukraine</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Baldi's Basics Plus version 0.3.8 has just released!</h1>
+<h4>Check below for more info on the current state of the game!</h4>
+<p>Baldi's Basics Plus is like the original game, but PLUS! The same cruddy edutainment horror type parody theme is back, but with hugely expanded gameplay features, including procedurally generated levels, field trip minigames, crazy random events, PLUS more characters, more items, and more chaos!<br></p>
+<h1>This game is not what it seems...</h1>
+<p>Baldi's Basics Plus&nbsp;is a survival horror roguelite that parodies cheap 90's edutainment and never takes itself too seriously. You will encounter strange characters, find useful items, go on field trips and more as you explore Baldi's ever changing super&nbsp;schoolhouse, and as you explore the game itself, you'll start to realize it is not what it seems...</p>
+<p>So, what exactly do you do in this game? You collect notebooks while playing hide and seek with Baldi! Sounds easy right? Wrong.&nbsp;Baldi can hear many of your actions, and he uses those sounds to try and find you.&nbsp;He's also invited many friends to come and play, who can cause a lot of trouble. Get to know them though and you can use them to your advantage! You'll also find lots of items scattered around the school.&nbsp;These are the key to success.&nbsp;Use them wisely if you want to have a chance at beating Baldi!</p>
+<h1>Near infinite replayability</h1>
+<p>Baldi's Basics Plus randomizes so many different things, every time you play will be a different experience!</p>
+<ul><li>Procedurally generated levels - The levels change every time you play!&nbsp;Not only will the layout change, but the types of rooms and obstacles, you find will change too!</li><li>Random events - One moment everything is fine, the next the school is flooding, or fills with fog!&nbsp;Random events can begin at any moment, so make sure you're ready for them!</li><li>Mixing and matching characters -&nbsp;Each time you play, you'll get to see random combination of characters.</li></ul>
+<p>All these variables add up to make each playthrough a unique experience!</p>
+<h1>Lots of ways to play</h1>
+<p>Baldi's Basics Plus features many different modes to test players in different ways!</p>
+<ul><li>Main&nbsp;Mode - Complete a series of randomly generated levels to win! Run out of lives and you'll have to start over.</li><li>Endless Mode&nbsp;-&nbsp;See how many notebooks you can collect before being caught by Baldi! Compete by playing on pre-made levels, or go crazy and try playing on a randomly generated one.</li><li>Challenge Mode - As you play more of the Main&nbsp;Mode, you'll unlock challenges! Challenges offer unique scenarios you won't find in the main game.&nbsp;One might have you sneaking around the school to avoid being seen by the Principal of the Thing, another might have both you and Baldi running at super high speeds!</li><li>Field Trips Mode&nbsp;- Play field trips found in the main game whenever you like! You can try to set high scores, or just practice!</li></ul>
+<h1>Early access info</h1>
+<p>Baldi's Basics Plus is going to launch this spring as an early access title.&nbsp;This means you will be able to buy and play the game, but it won't be finished yet!&nbsp;As such you can expect to encounter some bugs, and there will be some missing features for a while. However, you will also receive all future updates for free and get to be a part of this game's development! Check out the FAQ below for more info.</p>
+<h4>Why Early Access?</h4>
+<p>Baldi's Basics Plus has become a much longer project than I initially anticipated (That's game development for you!). However, I feel like it has reached a very playable and enjoyable state, so instead of making everyone wait who knows how long to be able to play, I've decided to release the game in early access so everyone can enjoy it sooner and take part in the development process!</p>
+<h4>Approximately how long will this game be in Early Access?</h4>
+<p>Currently, I'm thinking the game will probably be in development for another year or two until it reaches a state where I could call it finished.</p>
+<h4>How is the full version planned to differ from the Early Access version?</h4>
+<p>The full version will differ mainly by having more content. More NPCs, more random events, more items, more level styles, more everything! Of course, the full version won't just be the early access with more content. As the game develops there will be lots of polishing, QoL improvements, new major features added, etc. Perhaps most importantly, adjustments to game balance will mostly be done when the early access is coming to a close. The full version will also include some secrets and story elements that will not be found in the early access versions.</p>
+<h4>What is the current state of the Early Access version?</h4>
+<p>Keep an eye on this list as development progresses to see what's being added!</p>
+<p>Features that are currently implemented include:</p>
+<ul><li>Hide and Seek (The game's main mode), which requires the player to beat a series of randomly generated levels. (Currently has three levels to beat, more are planned)</li><li>Challenge Mode (Currently there are three challenge maps, more are planned)</li><li>Endless Mode</li><li>Field trip Mode</li><li>Custom NPC AI (Currently there are 12 fully functional NPCs, more are planned)</li><li>Procedural level generation</li><li>Random events (Currently there are seven, more are planned)</li><li>Field trips (Currently there are two, more are planned)</li><li>"Educational" activities, which are very short puzzles or mini-games that must be completed to collect notebooks in some modes (Currently there is one, more are planned).</li><li>Custom lighting system</li><li>In-game shop where you can purchase items between levels</li><li>Save and continue system, which will allow you to quit in the middle of a game of Hide and Seek&nbsp;and then continue later where you left off</li></ul>
+<p>Planned features that are not yet implemented include:</p>
+<ul><li>Secret levels</li><li>In-game achievement system.</li><li>Horror elements (This will come much later into development.&nbsp;Currently the game has very little in the way of spooks)</li><li>Crappy "edutainment" elements, including things like more interactive menus (Where you can click on things!) and other common edutainment game tropes.</li><li>Adaptive music</li></ul>
+<p><br></p>
+<h4>Will the game be priced differently during and after Early Access?</h4>
+<p>Yes, as the game develops and more content is added, the price will increase accordingly.&nbsp;Of course, anyone who has already purchased the game will continue to receive all updates for free, even after price increases.</p>
+<h4>How are you planning on involving the Community in your development process?</h4>
+<p>Feedback is crucial to the development of this insane game! I will mainly use community feedback for fixing bugs, as well as balancing and quality of life improvements.</p>
+<p>© 2020 Basically&nbsp;Games, LLC<br></p>
+<p><a href="https://www.basicallygames.com/" target="_blank" rel="nofollow noopener" referrerpolicy="origin"><img src="https://img.itch.zone/aW1nLzMxNzc5ODUucG5n/original/dLmlcI.png" alt="Visit the Basically Games website" title="Visit the Basically Games website" loading="lazy"></a></p>
+<figure><a href="https://store.baldisbasics.com/" target="_blank" rel="nofollow noopener" referrerpolicy="origin"><img src="https://img.itch.zone/aW1nLzE2NjcyOTMuanBn/original/TewARe.jpg" alt="Click here to enter!" title="Click here to enter!" style="max-width: 100%" loading="lazy"></a></figure>
+<p class="text-center"><em><a href="https://store.baldisbasics.com/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Baldi's Basics merch is available here!</a></em></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
