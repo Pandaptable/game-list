@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>EVE Online</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> EVE Online</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>9h 26m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-11/15/2018">11/15/2018</a> 13:33:10</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:33</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:59:03</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-5/6/2003">5/6/2003</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-77">77</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-79">79</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-CCP Games">CCP Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-CCP Games">CCP Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Operative">Co-Operative</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Massively Multiplayer Online (MMO)">Massively Multiplayer Online (MMO)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/8500" target="_blank">Steam</a><br/><a href="http://www.eveonline.com" target="_blank">Official Website</a><br/><a href="https://eve.fandom.com/wiki/Main_Page" target="_blank">Wikia</a><br/><a href="https://en.wikipedia.org/wiki/Eve_Online" target="_blank">Wikipedia</a><br/><a href="https://www.facebook.com/eveonline" target="_blank">Facebook</a><br/><a href="https://twitter.com/eveonline" target="_blank">Twitter</a><br/><a href="https://www.instagram.com/eveonline" target="_blank">Instagram</a><br/><a href="https://www.youtube.com/channel/UCwF3VyalTHzL0L-GDlwtbRw" target="_blank">Youtube</a><br/><a href="https://www.reddit.com/r/Eve" target="_blank">Reddit</a><br/><a href="https://www.epicgames.com/p/eve-online" target="_blank">Epic</a><br/><a href="https://discord.gg/eveonline" target="_blank">Discord</a><br/><a href="https://www.twitch.tv/directory/game/EVE Online" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<strong>THE #1 SPACE MMO</strong><br><br>EVE Online is the largest single shard space MMO of all time. With over 7,000 solar systems and nearly 20 years of rich player-created history, join this storied universe and play free to experience everything from immense PvP or PvE battles to mining, exploration, and industry.<br><br>Seize your destiny as an immortal, a Capsuleer capable of piloting over 350 fully customizable starships from small, nimble Frigates to formidable Battleships and massive Freighters. Embark on a solo adventure through the twisting nexus of wormhole space, form a mighty industrial empire to transform athe building blocks of the universe, or take up arms with likeminded players to conquer vast frontiers together. Who will you be in New Eden?<br><br><strong>PLAY FREE</strong><br>Experience this vast spaceship MMO for free as an Alpha Clone with access to Frigates, Destroyers, Cruisers, Battlecruisers, and Battleships of any faction. Enterprising Capsuleers may also choose to upgrade to Omega Clone for unlimited Ship access and double training speed.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/8500/extras/eve-1.png?t=1673003177" /><br><br><strong>SINGLE SHARD, SINGLE SERVER SANDBOX</strong><br>As a single sharded MMO, all players of EVE Online play on the same server across all timezones. Jump in and join thousands of players in the greatest space sandbox there is. Every decision you make, battle you win, and system you claim becomes a part of the long, rich history of New Eden. Where will you leave your mark?<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/8500/extras/eve-2.png?t=1673003177" /><br><br><strong>GAMING'S BIGGEST BATTLES</strong><br>There's no limit on what you can accomplish as a Capsuleer. EVE currently holds the Guinness World Record for the largest multiplayer video game PvP battle - 8,825 players in a single conflict. Take part in massive spaceship battles from day one or train up and command those fleets yourself.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/8500/extras/eve-9.png?t=1673003177" /><br><br><strong>PLAYER DRIVEN ECONOMY</strong><br>EVE's player economy is one of unprecedented scale. The single shard nature of the universe makes for a single economy spread across thousands of space stations. Whether you want to trade on the local markets, produce new ships and equipment, or make cunning investments based on knowledge of player politics, it's all possible.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/8500/extras/eve-7.png?t=1673003177" /><br><br><strong>LIMITLESS CHOICES</strong><br>Pursue a life of exploration, warfare, prosperity, or all of the above! Pilot over 350 different vessels and customize it to your liking with thousands of unique modules. Modify your ship as a fast and nimble fighter or design it from the ground up as a heavily shielded brawler to go toe to toe with others. Feeling lucky? Take a chance and modify your equipment further using alien technology found deep in Abyssal Deadspace.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/8500/extras/eve-3.png?t=1673003177" /><br><br><strong>CONTINUOUS DEVELOPMENT</strong><br>With over 17 years of active development and free expansions, EVE is one of the longest running space MMOs out there. Join a thrilling universe filled with the unrelenting activity and combined history of millions of other players!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/8500/extras/eve-4.png?t=1673003177" />
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

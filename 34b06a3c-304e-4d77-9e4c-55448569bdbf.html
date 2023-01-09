@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>VRChat</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> VRChat</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>3d 10h 20m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-12/28/2022">12/28/2022</a> 21:03:48</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:33</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:56:05</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-2/1/2017">2/1/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-79">79</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-VRChat Inc.">VRChat Inc.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-VRChat Inc.">VRChat Inc.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Operative">Co-Operative</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Massively Multiplayer Online (MMO)">Massively Multiplayer Online (MMO)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-VR">VR</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/438100" target="_blank">Steam</a><br/><a href="https://twitter.com/VRChat" target="_blank">Twitter</a><br/><a href="https://vrchat.com/" target="_blank">Official Website</a><br/><a href="https://en.wikipedia.org/wiki/VRChat" target="_blank">Wikipedia</a><br/><a href="https://www.reddit.com/r/VRchat/" target="_blank">Reddit</a><br/><a href="https://instagram.com/vrchat" target="_blank">Instagram</a><br/><a href="https://youtube.com/vrchat" target="_blank">Youtube</a><br/><a href="https://www.twitch.tv/directory/game/VRChat" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Imagine a world where anything is possible. Join a game of capture the flag in outer space. Share stories around a campfire while roasting marshmallows, then moments later experience a retro game of bowling with an alien and robot. In VRChat there is something around every corner that will delight, thanks to the power of true user generated content. Jump into hundreds of awe inspiring environments and meet unique avatars every day. Watch a movie on the moon. Ride the Titanic. Step into a new world every time you come online. In VRChat, you are one of us. Enjoy your stay.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/438100/extras/CHAT2.png?t=1662741577" /> <br><br>Chat using full spatialized 3-d audio in a wide variety of environments. <br><br>Use emotes, emoji, and hand gestures to communicate fully with your entire body. We have avatars with incredible technology, including mouths that realistically match your speech and eyes that actually look at you. Our full IK system tracks when you lean or crouch.<br><br>All in all, VRChat has the most expressive avatars around!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/438100/extras/Play2.png?t=1662741577" /><br><br>Feeling active? Jump into a match of Capture the Flag or enter the old west and rob a bank in Steel n’ Gold. Go head-to-head in Battle Discs or bowl out a few frames with friends. Feeling more creative? Put on some Bob Ross and bring out your inner artist in Sculpt Studio or enjoy a night of VR Karaoke. Whatever your mood, we’ve got something for you.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/438100/extras/Hangout3.png?t=1662741577" /><br><br>Want to watch YouTube videos in a space station with friends? Check. How about catching a show in a jazz bar? Check. Feel like brainstorming your next million-dollar concept in our presentation room? Double check.<br><br>With hundreds of unique worlds and more opening up weekly, there is always a different place to chill and socialize with others.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/438100/extras/Create2.png?t=1662741577" /><br><br>Join our community of builders using Unity and our SDK to create worlds and avatars in VRChat! Our Unity SDK lets you create a wide variety of VR experiences. Build a new world from your own imagination. Create an avatar that expresses your unique personality.<br><br>Don’t want to stop with avatars and worlds? Start your own event! VRChat is home to Gunter's Universe, the first ever talk show in VR. Host your own show, teach a class on how to build in VRChat, create a musical performance, or start your own VR acting studio! The possibilities are endless!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/438100/extras/Share2.png?t=1662741577" /><br><br>Show off your latest creations to your friends, our entire community and the whole world!<br><br>Snap a Polaroid with our in-game cameras. Pass the photo around in VR or share your desktop version anywhere.<br><br>You can even  snap and share a 3-D 360° panorama anytime in VRChat. Thanks to our integration with VRChive, no matter where you are in VRChat, you can easily take 360° panos. Snap away!<h2 class="bb_tag">CONSIDERATIONS</h2><br>Let’s keep it loose and friendly.  No hateful speech, excessive profanity, explicit sexual behavior, self-promotion or solicitation.<br> <br>By entering VRChat, you are agreeing to our Code of Conduct, complete version found on our website.<br> <br>We wish you a pleasant journey on your trip down the rabbit hole.<h2 class="bb_tag">WANT MORE INFO?</h2>Join our Discord community chat at <a href="https://steamcommunity.com/linkfilter/?url=https://discord.gg/vrchat" target="_blank" rel=" noopener"  >https://discord.gg/vrchat</a> to get involved sharing ideas, get or offer help, join our beta tests and more.<br> <br>Contact us at <a href="mailto:support@vrchat.com">support@vrchat.com</a>.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
