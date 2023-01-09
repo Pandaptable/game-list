@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dreadnought</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Dreadnought</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:33</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:59:02</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-8/1/2017">8/1/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-73">73</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Shooter">Shooter</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Yager Development">Yager Development</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Grey Box">Grey Box</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Operative">Co-Operative</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Massively Multiplayer Online (MMO)">Massively Multiplayer Online (MMO)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://www.greybox.com/dreadnought/en/" target="_blank">Official Website</a><br/><a href="https://www.facebook.com/playdreadnought" target="_blank">Facebook</a><br/><a href="https://twitter.com/playdreadnought" target="_blank">Twitter</a><br/><a href="https://en.wikipedia.org/wiki/Dreadnought_(video_game)" target="_blank">Wikipedia</a><br/><a href="https://go.twitch.tv/dreadnought" target="_blank">Twitch</a><br/><a href="https://www.youtube.com/user/playdreadnought" target="_blank">Youtube</a><br/><a href="https://store.steampowered.com/app/835860" target="_blank">Steam</a><br/><a href="https://www.twitch.tv/directory/game/Dreadnought" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/TestGIF2.png?t=1625234794" /><br><br>Dreadnought is about one thing: team-based, capital ship combat. It’s a free-to-play shooter that puts you at the center of battles in space and above the surfaces of colonies across the solar system.<br><br>But it’s not just you and your guns against the world. You have your teammates—outlaw captains like yourself—and a range of ballistic weaponry, Goliath nuclear torpedoes, and long-range Tesla cannons to fill out your earth-shaking arsenal.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/UMG_ModuleDetail_ENGLISH.png?t=1625234794" /><br><br>Combat in Dreadnought takes place at a deliberate pace, giving you just enough time to react to an ever-changing battlefield. During each match, you’ll be able to respawn as a different vessel and switch up your strategy—all while the opposing team does the same.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/UMG_EnergyWheel_ENGLISH.png?t=1625234794" /><br><br>Winning isn’t just about cannons, missiles, and torpedoes. Each vessel is equipped with an energy management system that gives your crew the ability to activate shields, boost engine power, and amplify weapon damage. Using this energy wisely is key to coming out on top.   <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/UMG_TechTree_ENGLISH.png?t=1625234794" /><br><br>Every battle gives you Credits and XP, which you can spend to unlock a range of ships, weapons, and modules.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/UMG_ManufacturerSelection_ENGLISH.png?t=1625234794" /><br><br>Fly ships from 3 manufacturers – The tough and rugged Jupiter Arms, the solid and bulky Akula Vektor, and the sleek and ethereal Oberon.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/05_Whatourplayeraresaying_SM.png?t=1625234794" /><br><br><i>&quot;Have you tried Dreadnought? Best free game out there. Graphics are awesome, kinda feels like I'm stealing by playing this one&quot;</i> - JPanman<br><br><i>&quot;Boom. Straight facts right here! Dreadnought is awesome, free to play, and not pay to win! &quot;</i> - @Elite_CR<br><br><i>&quot;At first i didn't think I'd EVER like the corvette ships... turns out, they're a whole lotta fun!  Dreadnought is a blast (pun intended)&quot;</i> - @TrashPandaGrr<br><br><i>&quot; I'm here to say that Dreadnought, the free to play large spaceship biffing game, is fun as hell and very pretty &quot;</i> - @badthingsliker<br><br><i>&quot;So very proud to represent Dreadnought! Every time I get online and interact with the amazing community they have, I am reminded how lucky I am!&quot;</i> - MTNrhyno<br> <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/01_GameFeatures_SM.png?t=1625234794" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet1.png?t=1625234794" /> Fight in 8v8 matches – Unleash your guns alongside friends—or complete strangers.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet1.png?t=1625234794" /> Command your own capital ships – Over 70 vessels across 5 specialized classes.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet1.png?t=1625234794" /> Outwit opponents – Maneuver your ship up, down, and across vast battlefields.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet1.png?t=1625234794" /> Adapt and conquer – Respawn in different ships and loadouts during matches.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet1.png?t=1625234794" /> Create the perfect loadout – Equip weapons, modules, and more. Choose from thousands of combinations.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet1.png?t=1625234794" /> Customize your ships – Look more colorful in victory—and defeat.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet1.png?t=1625234794" /> Personalize your captain – Suit up in a wide range of unique outlaw apparel.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet1.png?t=1625234794" /> Mix up the battlefield – Play classic game modes like Team Deathmatch, Onslaught, and Conquest.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet1.png?t=1625234794" /> Advance your rank – Gain experience to unlock more advanced ships and modules.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/02_GameDevelopmentRoadmap_SM.png?t=1625234794" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet3.png?t=1625234794" /> New ships – We will keep adding more ships across all 3 ship manufacturers <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet3.png?t=1625234794" /> New maps – More space and terrestrial battle arenas are coming in the future<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet3.png?t=1625234794" /> More game modes – Havoc and co-op PvE missions are on the horizon! <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet3.png?t=1625234794" /> Daily login bonuses – Play often to get rewards<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet3.png?t=1625234794" /> Prestige system – Rise from fresh-faced rookie to veteran outlaw<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet3.png?t=1625234794" /> Crew progression – Level up your officers with specialized skills<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet3.png?t=1625234794" /> Community events - Take part in limited-time events for special rewards<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet3.png?t=1625234794" /> Additional languages – Coming soon<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet3.png?t=1625234794" /> More to come – Stay tuned!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/04_HowWeDoFree-to-Play_SM2.png?t=1625234794" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet2.png?t=1625234794" /> Battles are never pay-to-win. You can’t “buy power” for your ship—just items to customize its appearance. <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet2.png?t=1625234794" /> We deploy game updates and quality-of-life improvements at least every 2 months.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet2.png?t=1625234794" /> We also regularly release new content for the in-game market.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/Bullet2.png?t=1625234794" /> We listen: tell us what you think about the game (and what you’d like to see in the future) in our community forums!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/835860/extras/03_MessageCurrentPlayers_SM2.png?t=1625234794" /><br><br>The beta test period for Dreadnought has ended. All players are required to have a Steam account and complete a quick, one-time accounting linking process.<br><br>Please note: if you participated in the beta, all progress and balances you have achieved will remain intact. Thank you for playing!<h2 class="bb_tag">Add us to your Steam wish list to be informed when Dreadnought launches and follow us to receive updates on ongoing development.</h2>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Culling</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> The Culling</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:33</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:53:44</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-10/5/2017">10/5/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-50">50</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Shooter">Shooter</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Xaviant">Xaviant</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Xaviant">Xaviant</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Battle Royale">Battle Royale</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://twitter.com/TheCullingGame" target="_blank">Twitter</a><br/><a href="http://www.theculling.com" target="_blank">Official Website</a><br/><a href="https://store.steampowered.com/app/437220" target="_blank">Steam</a><br/><a href="https://en.wikipedia.org/wiki/The_Culling_(video_game)" target="_blank">Wikipedia</a><br/><a href="https://www.twitch.tv/directory/game/The Culling" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Battle Royale is back! The game that took the world by storm in 2016 has returned to its roots and is better than ever, not to mention free-to-play. With a whole host of improvements and new features, The Culling: Origins takes you back to the island where it all began... and asks whether you have the guts, brains, and skill required to survive.<br> <br> <br>Welcome to The Culling. As a contestant on this deadly game show you must explore, scavenge items, craft weapons, and build traps that will enable you to slay your fellow contestants and emerge victorious before the end of the round. Only with cunning, skill, and a little luck will you be able to prevail and survive the match.<h2 class="bb_tag">How we do free-to-play</h2>All aspects of gameplay are available to all players and The Culling does not (and will never) include pay-to-win mechanics.<br> <br> <br>If you choose to spend real money, you can do so through paid DLC packs or premium currency in the form of Tokens. Tokens allow you to buy Cull Crates and exclusive Premium Items. You can earn Cull Crates, which award standard cosmetic items, by simply playing the game. All of these unlocks are cosmetic and have no impact on gameplay.<h2 class="bb_tag">How we develop The Culling</h2>We are committed to ongoing, community-focused development. Our goal is to provide a game that is as optimized, bug-free, and safe from cheaters as possible. Beyond that, we are balancing the game and adding new features based on input and requests directly from the community. If you'd like to get in on the action and share your ideas and opinions, please visit our website for more details.<br><br><br><br><strong>Features</strong><h2 class="bb_tag">Game Modes</h2>The core of The Culling is an online 16-player battle royale, played solo or in teams of two. Matches last approximately 20 minutes, with deadly poison gas slowly constricting the arena in the final stages. The winning player (or team) is the last left alive.<br> <br> <br>With no respawning on death, you have to make every action count. Play too cautiously and you won’t be prepared for the final clash at the end of the match, too aggressively and you might not make it past the first few minutes. It takes the right mix of skill and strategy to survive.<h2 class="bb_tag">Custom Matches</h2>Keep your friends close and your enemies closer as you orchestrate your own private matches of up to 16 players. Your competition, your rules, your Culling.<h2 class="bb_tag">Weapons and Combat</h2>The Culling focuses heavily on melee combat. Use jabs, charged swings, blocks, and shoves in a system that’s simple learn, but requires practice to truly master.<br> <br> <br>There are dozens of melee weapons in the form of blades, axes, bludgeons, and spears. Weapons are divided into tiers based on damage, from the lowly crafted stone knife to the mighty Sledgehammer. Different weapons types also apply different wounds, which factor into combat strategy. All melee weapons can be thrown, adding the potential for ranged combat in any encounter.<br> <br>There are a variety of ranged weapons, including bows, blowguns, and even firearms. A gun isn’t a guaranteed kill, however, as ammunition is in short supply and ranged players can be disarmed by melee strikes if they don’t keep their distance.<h2 class="bb_tag">Traps</h2>Players who thrive on outwitting their enemies can sample from a collection of traps in the form of snares, mines, remote-detonated explosives, caltrops, and punji sticks. Matches are fast-paced, so sneaky players must lay their traps in hot spots (such as near an airdrop landing pad) or use themselves as bait to lure opponents in.<h2 class="bb_tag">Items</h2>A wide range of utility items are at your disposal, with everything from backpacks to smoke bombs, run speed stims to stun guns, player tracking devices to bandages. You start each match empty-handed, so you must explore to survive. Inventory space is extremely limited, forcing you to think carefully about how you intend to play and what you want to carry.<h2 class="bb_tag">Crafting</h2>The Culling utilizes a unique crafting system that is very simple to use (no bulky UI-heavy inventory management) but still offers a wide range of recipes. Players can craft rudimentary weapons, a wide range of traps, and a handful of useful items, including bandages, satchels, and even body armor.<h2 class="bb_tag">Perks</h2>Each contestant chooses 3 perks before the start of a match. There are dozens of perks available, and they range from combat bonuses (increase the backstab potential of your blades) to crafting skills (reduce your trap placement time), to general utility (begin the match with a tracking device in your inventory).<br> <br> <br>All of the perks are available to all players from the start with no unlocking required. You can use perks to define and enhance your personal play style, whether it be focused on ranged, melee, or trap-based strategy. Advanced players will find helpful synergies between their perk load-out and their airdrop selection.<h2 class="bb_tag">Airdrops</h2>Players select a personal airdrop to call in during the match. Air drops are deadly care packages containing a predefined variety of weapons, traps and items. Be careful, because calling in an airdrop draws attention to you and can be stolen by other players.<h2 class="bb_tag">Game Show Events</h2>The Culling is the most popular game show in the history of the world, and for good reason. The show’s producers have devised events that take place at random during the match. If you choose to participate in these events, the rewards can improve your chances of winning, but don’t be surprised when other players arrive to challenge you.<h2 class="bb_tag">FUNC</h2>Flexible Universal Nano-Compound, or FUNC, serves as the primary in-game currency. You spend FUNC to craft, call in personal airdrops, and open certain types of item chests. FUNC is gained through combat and exploration.<h2 class="bb_tag">Character Customization</h2>Players can customize every aspect of their appearance: Hair, Clothing, Skin Tone, and Gender. There are hundreds of unlockable items.<br> <br> <br>The Culling also features customizable Taunts, Victory Celebrations, Culling Cards, and Weapon Skins.<br>In all, there are over 1,500 cosmetics to unlock.<h2 class="bb_tag">Audio</h2>The Culling places a heavy gameplay emphasis on audio. Making noise by sprinting through the jungle crafting items, slamming doors, and engaging in combat will draw the attention of nearby contestants.<br> <br> <br>Using audio cues to locate opponents and using the crouch mode to conceal your movements add tremendously to the game’s suspense and immersion.<h2 class="bb_tag">Tutorials and Offline Training Mode</h2>The Culling can be intimidating for new players, so we’ve included a basic tutorial and a training range to help you get your feet wet.<br> <br> <br>If you’re still not ready to face players online, there is an offline practice mode against basic AI-controlled bots that will allow you to practice in a low-pressure situation.<h2 class="bb_tag">Player XP and Leveling</h2>As you compete online in The Culling, you earn XP, which levels up your character and awards you Cull Crates full of new cosmetics. The better your performance, the faster you progress.<h2 class="bb_tag">Leaderboards</h2>The Culling features seasonal leaderboards, which showcase players with the most wins, most kills, and best ranking. Ranking is determined by an aggregate of your 10 best match scores for the season. Leaderboards are regional and split between Solo and Duo modes.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
