@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>DELVE: A Solo Map Drawing Game</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> DELVE: A Solo Map Drawing Game</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:27</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:57:08</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-8/3/2020">8/3/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_tag_ascending_name_ascending.html#quicklink-[itch.io] Bundle for Ukraine">[itch.io] Bundle for Ukraine</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><img src="https://img.itch.zone/aW1nLzM5ODc5NzYucG5n/original/GWRugP.png" loading="lazy"><br></p>
+<p><strong>DELVE: A Solo Map Drawing Game </strong>is a map drawing game that puts you in control of a dwarven hold as you discover the horrors that lurk below. This 44 page zine has everything you need to generate natural formations, forgotten ruins, enemies, wyrd magics, and ancient monstrosities. It has a simple turn-based combat system, rules for building your hold and optional challenges for a harder experience.<br></p>
+<p>Inspired by games like <span><em>Dwarf Fortress</em></span> and <span><em>Dungeon Keeper</em></span><em>,</em> <span><strong>DELVE</strong></span> aims to capture that feeling of building and protecting a fortress in an unforgiving subterranean world.</p>
+<p>All you need to play is, a pencil, paper (preferably 1" grid), and a deck of playing cards. </p>
+<figure><img src="https://img.itch.zone/aW1nLzM5ODc5NzgucG5n/original/X1%2FGJB.png" loading="lazy"><br></figure>
+<p><em>The Under-King has put out a bounty to all the holds demanding a Void Crystal, a rare and powerful gem found only in the deepest caverns. </em></p>
+<p>Each round your dwarves will mine another square of the grid, you draw a card from your deck of playing cards and see what they found. Hearts ♥ and Diamonds ♦ are resources and trade goods that you'll use for building and hiring units while Clubs ♣ and Spades ♠ are natural formations and forgotten ruins. From ancient libraries to goblin lairs, these subterranean locales will become part of your hold's unique layout and may provide unexpected benefits. Or you might just unleash a horde of ravenous insects in which case, you'll need to fight.</p>
+<p>Combat in <strong>DELVE</strong> is designed to allow for forward planning and strategic thinking without weighing you down with book-keeping. Enemies follow a tower-defense style path towards your hold's entrance while you move your units in simple turn-based tactical combat. Utilise traps, ranged attacks, and special units to face deadly foes or record your hold's epic demise.</p>
+<p><strong>DELVE</strong> will also be supported with ongoing updates and expansions which bring new features such as farming, trading, the Cave Sea, and more. Or you can check out <strong><a href="https://blackwellwriter.itch.io/rise-a-game-of-spreading-evil">RISE</a> </strong>(a dungeon building variant which tasks you with keeping your mutinious minions happy) or <strong><a href="https://blackwellwriter.itch.io/umbra-a-solo-game-of-final-frontiers">UMBRA</a></strong> (a sci-fi variant with challenges you with colonising strange alien planets).<br></p>
+<p>Sidebar images provided by, in order: Ed-Lynden Bell, <a href="https://twitter.com/UnMech" rel="nofollow noopener" referrerpolicy="origin">@Unmech</a>, <a href="https://twitter.com/Shanice_Fagan" rel="nofollow noopener" referrerpolicy="origin">@Shanice_Fagan</a>, and myself. <br></p>
+<p><strong>Join the Discord - <a href="https://discord.gg/wr9x25s" rel="nofollow noopener" referrerpolicy="origin">https://discord.gg/GygdYnA</a></strong></p>
+<p><strong>Physical Copies can be ordered from <a href="https://www.blackwellwriter.com/" rel="nofollow noopener" referrerpolicy="origin">https://www.blackwellwriter.com/</a></strong><strong><br></strong></p>
+<p><strong>Expansion Links:</strong></p>
+<ul><li><a href="https://blackwellwriter.itch.io/delve-feast-and-famine">Feast and Famine<br></a></li><li><span></span><a href="https://blackwellwriter.itch.io/delve-necromancy">Necromancy<br></a></li><li><span></span><a href="https://blackwellwriter.itch.io/delve-quests">Quests<br></a></li></ul>
+<p><strong>FAQ<br></strong></p>
+<p><strong>Q) What are the max ♥ and ♦ limits?<br></strong></p>
+<p><strong>A) 50 for each until you build Stockpiles or Treasuries<br></strong></p>
+<p><strong>Q) Can you build in unexplored Grid Spaces?<br></strong></p>
+<p><strong>A) Yes<br></strong></p><strong></strong>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

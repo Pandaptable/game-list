@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Demonizer</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Demonizer</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:27</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:55:31</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-9/2/2016">9/2/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Shooter">Shooter</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Iori Branford">Iori Branford</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Iori Branford">Iori Branford</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1091390/Demonizer" target="_blank">Steam</a><br/><a href="https://twitter.com/ioribranford" target="_blank">Twitter</a><br/><a href="https://ioribranford.itch.io/demonizer" target="_blank">Itch</a><br/><a href="https://discord.gg/8BW75Y9dbw" target="_blank">Discord</a><br/><a href="https://ioribranford.com/#demonizer" target="_blank">Official Website</a><br/><a href="https://www.twitch.tv/directory/game/Demonizer" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_tag_ascending_name_ascending.html#quicklink-[itch.io] Also available on Steam">[itch.io] Also available on Steam</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascending_name_ascending.html#quicklink-[itch.io] Bundle for Ukraine">[itch.io] Bundle for Ukraine</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>
+The fantasy bullet battle to end monstergirl genocide! Turn hateful humans into lovable demons in this 90s arcade style shooter, inspired by <em>Raiden Fighters</em>, <em>Strikers 1945</em>, and <em>Battle Garegga</em>.</p>
+<p>The exiled princess Amelia has turned into a succubus and joined the peaceful monstergirl tribe. Then invaders arrive led by her sister Angelina. Fighting back with her newfound powers of hypnosis and demonization she departs to take on the kingdom in a desperate bid to save her new people.</p>
+<ul><li>Seven challenging hand-crafted levels packed with beautiful pixel art - defend your forest, fight through towns, break monstergirls out of dungeons, race against cavalry and more</li><li>Battle fearsome enemy forces - masses of infantry and artillery, nimble swordsmen and assassins, tricky spellcasters and mighty magical constructs</li><li>Capture their souls - transform them into fellow demons and watch their powers grow with yours</li><li>Simple game systems reward natural and intuitive play - stay alive, shoot and bomb, and the rest will follow</li><li>Three difficulty levels - beginners, enthusiasts, and experts can all enjoy
+</li><li>Rock out to a gritty, stompy YM2612 FM synth soundtrack
+</li><li>Rich retro visual customization - portrait or landscape, low or high res, smooth or sharp pixels, stretch or no stretch
+</li><li>A twist on the old monster-slaying story - includes free digital comic book revealing events before the game</li></ul>
+<h1>Reviews</h1>
+<p>
+</p>
+<p>“absolutely fantastic. It is unique and worth your time...I love this visual style...it hit me with nostalgia in a way that a lot of these...'nostalgic' games just don't do for me.”</p>
+<p> <a href="https://www.youtube.com/watch?v=F_kMbAAn8X8" target="_blank" rel="nofollow noopener" referrerpolicy="origin">The Electric Underground</a> <a href="https://www.youtube.com/watch?v=ARlyXXCQER0&amp;t=890" target="_blank" rel="nofollow noopener" referrerpolicy="origin">#2 Shmup of 2020</a><br></p>
+<p>“everything is measured to the millimeter so that the experience is as satisfactory as possible....one of my games of the year....Iori Branford has graduated with a superb degree, unashamed, profound, intelligent, full of justice and feeling.”</p>
+<p><a href="https://steamcommunity.com/linkfilter/?url=https://islademonos.com/analisis/demonizer-el-odio-al-diferente/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Isla de Monos</a></p>
+<p>“Demonizer is a very entertaining STG for new players to the genre...does a really good job accompanying with a simple tutorial, easy mechanics and makes it very quick to practice any level you want.”</p>
+<p><a href="https://steamcommunity.com/linkfilter/?url=https://www.bitgamereviews.com/demonizer/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Bit Game Reviews</a><br></p>
+<figure><a href="http://www.indiedb.com/games/demonizer" rel="nofollow noopener" referrerpolicy="origin"><img src="http://button.indiedb.com/popularity/medium/games/54464.png" alt="Demonizer" loading="lazy"></a><br></figure>
+<h1>Controls</h1>
+<table><thead><tr><th>Action</th><th>Xbox controller</th><th>Other controller</th><th>Keyboard</th><th>Mouse</th><th>Android touchscreen<br></th></tr></thead><tbody><tr><td>Move</td><td>D-pad</td><td>X and Y axes<br></td><td>Arrow keys<br></td><td>Move mouse</td><td>1 finger drag<br></td></tr><tr><td>Fire</td><td>X button<br></td><td>Button 1<br></td><td>Z key<br></td><td>Button 1<br></td><td>Automatic<br></td></tr><tr><td>Alt Fire<br></td><td>A button<br></td><td>Button 2<br></td><td>X key<br></td><td>Button 2<br></td><td>1 finger touch<br></td></tr><tr><td>Bomb</td><td>B button<br></td><td>Button 3<br></td><td>C key<br></td><td>Button 3<br></td><td>2 fingers touch<br></td></tr><tr><td>Pause</td><td>Start button<br></td><td>Button 4<br></td><td>Esc key<br></td><td>Esc key<br></td><td>Back button<br></td></tr></tbody></table>
+<h1>How&nbsp;to Play</h1>
+<ul><li>Knock out enemies with primary fire (forward), alternate fire (lock-on), bomb</li><li>Capture red enemy hearts to turn them into friendly succubi</li><li>Capture blue enemy hearts for score/bomb/powerup<ul><li>Power level 0: single shot</li></ul><ul><li>Power level 1: dual shot</li></ul><ul><li>Power level 2: friends collect hearts&nbsp;-&nbsp;alt-fire pulls them&nbsp;back&nbsp;to&nbsp;safety</li></ul><ul><li>Power level 3: autocollect all onscreen hearts</li></ul><ul><li>Max level: friends assault enemies&nbsp;-&nbsp;alt-fire pulls&nbsp;them&nbsp;back&nbsp;to&nbsp;safety</li><li>The more blue hearts collected without losing a heart or a friend, the higher their point value</li></ul></li><li>Bomb can rescue falling hearts</li><li>Reach the score on the top right for extra life</li><li>Rescue and protect friendly monstergirls for extra score</li></ul>
+<h1>Guides &amp;&nbsp;Documentation</h1>
+<h3><a href="https://ioribranford.itch.io/demonizer/devlog/194313/configuration-guide" target="_blank">Configuration Guide</a></h3>
+<h1>Stream/Review Keys</h1>
+<p>To stream the full game, you can request a key at Keymailer:<br></p>
+<iframe scrolling="no" src="https://embed.keymailer.co/g/games/81646/request_button/_2196b0ee4b" width="200px" height="50px"></iframe>
+<p>Or Woovit:</p>
+<p><iframe src="https://woovit.com/widget/offer/demonizer/10" width="250px" height="280px" frameborder="0"></iframe></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

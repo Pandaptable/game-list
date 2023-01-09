@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Unturned</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Unturned</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>19h 50m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-12/13/2019">12/13/2019</a> 21:50:31</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:33</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:55:30</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-7/7/2017">7/7/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-68">68</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Shooter">Shooter</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Nelson Sexton">Nelson Sexton</a><br/><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Smartly Dressed Games">Smartly Dressed Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Smartly Dressed Games">Smartly Dressed Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Operative">Co-Operative</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Massively Multiplayer Online (MMO)">Massively Multiplayer Online (MMO)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-VR">VR</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://smartlydressedgames.com/" target="_blank">Official Website</a><br/><a href="https://twitter.com/SDGNelson" target="_blank">Twitter</a><br/><a href="https://store.steampowered.com/app/304930" target="_blank">Steam</a><br/><a href="https://unturned.fandom.com/wiki/Unturned" target="_blank">Wikia</a><br/><a href="https://en.wikipedia.org/wiki/Unturned" target="_blank">Wikipedia</a><br/><a href="https://www.reddit.com/r/unturned" target="_blank">Reddit</a><br/><a href="https://www.twitch.tv/directory/game/Unturned" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/304930/extras/Title.png?t=1666823591" /><br><br><strong>STAY UNTURNED</strong><br>You're one of the few not yet <i>turned</i> zombie. Keeping it that way will be a challenge.<br><br><ul class="bb_ul"><li>Go in guns blazing and attract the attention of everything, living and dead.<br></li><li>Take a subtle approach sneaking around and making use of distractions.<br></li><li>Confront and learn to counter special abilities ranging from invisibility to fire breathing to lightning attacks.</li></ul><br><strong>STRUGGLE AGAINST NATURE</strong><br>Zombies aside nature does plenty to make life hard.<br><br><ul class="bb_ul"><li>Forage wild fruits and vegetables.<br></li><li>Hunt animals for pelts and meat, or in some hostile environments become the prey.<br></li><li>Fish for food and garbage.<br></li><li>Plant a crop and make sure it gets rain.<br></li><li>Seek warmth and take shelter from blizzards.</li></ul><br><strong>DEAL WITH OTHER PLAYERS</strong><br>Friend or foe there's a lot of interesting people online.<br><br><ul class="bb_ul"><li>Arrest bandits with handcuffs and blindfold them as a non-lethal strategy.<br></li><li>Fight with every kind of weapon under the sun - swords, machine guns, snipers, missiles, landmines - you name it.<br></li><li>Raid enemy encampments using charges and detonators and steal their loot.<br></li><li>For pure PvP play arena mode in a last man standing battle to the death, or PvE for peaceful cooperation.<br></li><li>Roleplay servers encourage everyone to stay in character and tell a story together.</li></ul><br><strong>HELP THE NEW SOCIETY</strong><br>Plenty to do even if you're offline or going solo.<br><br><ul class="bb_ul"><li>Meet, talk and trade with NPCs.<br></li><li>Complete quests to aid NPCs and progress the story.<br></li><li>Fend off waves of the undead to clear hordes.<br></li><li>Secure airdropped supplies.<br></li><li>Gear up with gasmasks to scout radioactive deadzones.</li></ul><br><strong>FORTIFY YOUR STRONGHOLD</strong><br>Somewhere to kick back and chillax or a hideout to direct your gang, whatever floats your boat (in this case sometimes literally).<br><br><ul class="bb_ul"><li>Build with barricades, furniture, traps, machinery and more.<br></li><li>Board up the windows of existing structures to survive the night.<br></li><li>Craft an entirely new structure from supplies you collect.<br></li><li>Turn your vehicle into a moving fortress by building on it.</li></ul><br><strong>TRAVEL BY LAND, AIR AND SEA</strong><br>Roll out in style with a fully stocked garage.<br><br><ul class="bb_ul"><li>Land vehicles including tanks, quads and snowmobiles.<br></li><li>Air vehicles from helicopters to seaplanes to fighter jets.<br></li><li>Sea vehicles such as jetskis and hovercraft.<br></li><li>Maintain your vehicles with tires, batteries and fuel.</li></ul><br><strong>EXPLORE MASSIVE WORLDS</strong><br>With 5 officially developed and 1 curated community created sandbox map there's a wide variety of locations to discover:<br><br><ul class="bb_ul"><li>Prince Edward Island (PEI)<br></li><li>The Yukon<br></li><li>Washington<br></li><li>Russia<br></li><li>Hawaii<br></li><li>Germany</li></ul><br><strong>MOD EVERYTHING</strong><br>From the ground up Unturned was designed for modding.<br><br><ul class="bb_ul"><li>Download player created content ranging from guns to vehicles to huge levels from the workshop, and upload your own.<br></li><li>Build custom maps using the in-game level editor. All of the official maps were created with the same free public tools and their assets are open for you to use.<br></li><li>Write plugins using built-in or strong third party systems.<br></li><li>Get your apparel and skins upvoted in the workshop for consideration to be accepted and sold.<br></li><li>Team up with other modders and put together your own update for consideration to be officially adopted. </li></ul><br><strong>NEAT STUFF</strong><br>I think these features are neat and they didn't fit anywhere else. There's many more I want to include but for brevity's sake:<br><br><ul class="bb_ul"><li>Most objects can be destroyed to create new pathways.<br></li><li>For immersion you can pick a frequency and use two-way radios to communicate with your squad rather than external voice chat programs.</li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
