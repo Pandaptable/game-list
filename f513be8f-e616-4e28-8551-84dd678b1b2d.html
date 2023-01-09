@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nina Aquila: Legal Eagle, Season One</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Nina Aquila: Legal Eagle, Season One</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:27</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:52:19</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-12/8/2018">12/8/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Visual Novel">Visual Novel</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Tanuki-sama Studios">Tanuki-sama Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Tanuki-sama Studios">Tanuki-sama Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1547290/Nina_Aquila_Legal_Eagle_Season_One" target="_blank">Steam</a><br/><a href="https://tanuki-sama-studios.itch.io/nale" target="_blank">Itch</a><br/><a href="https://nina-aquila.com/" target="_blank">Official Website</a><br/><a href="https://store.steampowered.com/app/1547290/Nina_Aquila_Legal_Eagle_Season_One/" target="_blank">Steam</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_tag_ascending_name_ascending.html#quicklink-[itch.io] Also available on Steam">[itch.io] Also available on Steam</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascending_name_ascending.html#quicklink-[itch.io] Bundle for Ukraine">[itch.io] Bundle for Ukraine</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h4 class="text-center">Try out Chapter 1 now, for free, in the browser demo above (or download the desktop demo)...</h4>
+<h4 class="text-center">... then come back later and buy the full, 10-hour experience!</h4>
+<hr>
+<h1 class="text-center">In the full version...</h1>
+<p>Step into court as Nina Aquila, rookie defense attorney in this thrilling VN/adventure game hybrid, and fight for justice in a world where all anime genres exist at once!<br></p>
+<ul><li>Experience an exciting mystery story told over ~10 hours
+</li><li>Discover a unique hybrid of Visual Novel &amp; 2D adventure game that celebrates &amp; parodies multiple anime genres
+</li><li>Investigate crime scenes &amp; interrogate witnesses from a top-down perspective
+</li><li>Defend your client in court with evidence &amp; cross-examination
+</li><li>Play minigames as varied as turn-based battling and downhill drift racing
+</li></ul>
+<p>Now collected together into NINA AQUILA: LEGAL EAGLE, SEASON ONE, investigate &amp; defend your clients through three different cases, themed around cosplay, card games &amp; illegal mountain street racing!</p>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzc2MDE5OTAucG5n/original/q%2FLy8L.png" loading="lazy">
+</p>
+<p class="text-center">(Chapter 1 is present in&nbsp;the demo)</p>
+<p>When Nina Aquila, freshly qualified defense attorney, takes part in her last supervised trial, she sets events in motion that will cause her career to become a casualty of a secret war. A great game is being played for the heart of Fledge City by the ruthless and powerful, one that Nina will have to uncover one case at a time.
+</p>
+<p>Step into court and defend a young woman cosplaying as a fire mage, who stands accused of arson! In this trial, Anya will show you the ropes of how NALE works, while setting events in motion that will change Nina's life forever.
+</p>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzc2MDE5OTEucG5n/original/hqg7RP.png" loading="lazy">
+</p>
+<p>Several weeks after Chapter I, Nina's life is in turmoil after a costly defeat in court. Her confidence shattered, Nina holes up in her office until a visitor comes to the door - one who believes that only she can help him. A murder has been committed at the High Flyers Casino. The victim? A celebrity player of a trading card game, "Dragon Fantasy Arena", on the eve of the national tournament!
+</p>
+<p>Who would commit murder over a children's card game? And why?
+</p>
+<p>Surrounded by hot-blooded heroes and dastardly cosplaying villains, Nina will need all her cunning if she's to make the best of a bad draw... Or her client's going to be sent to the graveyard!
+</p>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzc2MDE5OTMucG5n/original/T36fuI.png" loading="lazy">
+</p>
+<p>Following on from Chapter II, Nina and Dylan have been looking into the events surrounding a key trial and arrest, but the volume of evidence is huge, and weeks have already passed without any leads. Still, Aquila Defense &amp; Law is a business, and when a person calling himself "The Jack of Diamonds" comes to the door in the middle of the night, Nina and Dylan are forced to take up his case.</p>
+<p>Something is wrong up in the mountains. Shockwaves are ringing through the world of Fledge City's illegal street racing scene: Clara Mass, longtime racer and "The Ace of Spades" has been murdered during a race, and several other racers stand accused of the crime!</p>
+<p>The fragile truce between the street racing groups is being stretched to breaking point, and police involvement threatens to end mountain road racing once and for all!
+Now, Nina and Dylan must journey north of the streets of Fledge City to the snow-covered passes of The Rostro Spire, the tallest mountain in the region, to search for answers amid the high-octane sub-culture of Touge Janken Racing...</p>
+<p>... but some truths can only be found in the heart of the drift!
+</p>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzc2MDE5OTYucG5n/original/3sxOIn.png" loading="lazy">
+</p>
+<ul><li>Hybrid VN/Graphic Adventure gameplay with ~10 hours of story-driven content
+</li><li>Pacing, presentation &amp; tone that celebrates and satirises different anime genres
+</li><li>Defend your client in court by cross-examining witnesses
+</li><li>Investigate crime scenes and search for clues
+</li><li>Explore Fledge City's Mode7-style overworld
+</li><li>Take part in "Dragon Fantasy Area", a trading-card themed battle system unique to the world of NALE
+</li><li>Engage in "Touge Janken Racing", a turn-based downhill driving minigame inspired by street racing manga &amp; anime
+</li><li>Accessibility features, including options to reduce effects for photosensitive users, and an "always-win" option for minigames to facilitate casual play
+</li></ul>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzc2MDIwMDYucG5n/original/wQexFX.png" loading="lazy">
+</p>
+<p>NINA AQUILA: LEGAL EAGLE, SEASON ONE is the definitive Nina Aquila: Legal Eagle experience, including...
+</p>
+<ul><li>The original three chapters of NALE presented as one package for the first time
+</li><li>New illustrated character busts for Nina, Dylan, Chad, Anya &amp; Judge Tawny bring greater emotional weight to scenes
+</li><li>Unlockable special features, including an art gallery &amp; music test
+</li><li>An unlockable exploration mode, where you can tour the locations of Chapters 1-3
+</li><li>Revised video sequences that take advantage of new art
+</li><li>New audio elements including improved sound FX
+</li><li>Countless small improvements too numerous to list
+</li></ul>
+<p>Now, step into court as Nina Aquila, and defend your clients in a world where all anime genres exist at once!</p>
+<h3 class="text-center">Content Warnings</h3>
+<p><em>The full game of NINA AQUILA: LEGAL EAGLE, SEASON ONE contains some content that may not be considered appropriate for all ages, and in some cases may not be safe for work.</em>
+</p>
+<p><em>The game involves murder investigations, and although there is no graphic violence or gore, we would like to forewarn audiences who are particularly averse to themes of arson, murder and death by car-related incident that they may find its themes troubling.</em>
+</p>
+<p><em>There is some mild nudity, typically framed in a humorous/cute manner. Several images exist of a character in poses &amp; outfits that some audiences may find sexy/provocative.</em>
+</p>
+<h3 class="text-center">Further Info</h3>
+<p><em>Nina Aquila: Legal Eagle</em>&nbsp;is a series of indie "anime courtroom drama adventure" games, made by solo developer Ethan Fox for&nbsp;<a href="https://tanukisama.com/" rel="nofollow noopener" referrerpolicy="origin">Tanuki-sama Studios</a>.
+</p>
+<p class="text-center"><a href="https://discord.gg/YyH5Ksa" rel="nofollow noopener" referrerpolicy="origin"><img src="https://img.itch.zone/aW1nLzUxNzY5MzAucG5n/original/WDB7aV.png" loading="lazy"></a>&nbsp;&nbsp;<a href="https://www.teepublic.com/en-gb/user/nale" rel="nofollow noopener" referrerpolicy="origin"><img src="https://img.itch.zone/aW1nLzUxNzY5MzIucG5n/original/x56i9p.png" loading="lazy"></a>&nbsp;&nbsp;<a href="https://twitter.com/tanuki_studios" rel="nofollow noopener" referrerpolicy="origin"><img src="https://img.itch.zone/aW1nLzUxNzY5MzMucG5n/original/CGJjgQ.png" loading="lazy"></a><br></p>
+<p>NALE was originally released on itchio as a webgame in late 2018, to initial success. Two additional episodic downloadable chapters were developed over the following years, bringing the total number of chapters to 3. These Chapters II and III were presented here on itch as stand-alone games.
+</p>
+<p>The game's first chapter would later win a cash prize in the "Best of November 2020" category on Newgrounds.
+</p>
+<p><em>Nina Aquila: Legal Eagle, Season One</em>&nbsp;takes the three existing chapters and rolls them into one game,&nbsp;adding many enhancements, such as improved visuals, art &amp; animation, improved sound &amp; voice samples and countless more.
+</p>
+<p>This&nbsp;<em>Season One</em>&nbsp;release effectively replaces the older games and can be considered the definitive version of&nbsp;<em>Nina Aquila: Legal Eagle</em>&nbsp;Chapters I-III. Additionally, this Season One release on itchio is effectively the same game as the&nbsp;<a href="https://store.steampowered.com/app/1547290/Nina_Aquila_Legal_Eagle_Season_One/" rel="nofollow noopener" referrerpolicy="origin">Steam release</a>&nbsp;(minus achievements).</p>
+<h3 class="text-center">System Requirements</h3>
+<ul><li><strong>OS:</strong> WindowsR 7/8/8.1/10 (32bit/64bit) or recent&nbsp;Linux distro</li><li><strong>Processor:</strong> Intel Core2 Duo or better
+</li><li><strong>Memory:</strong> 2 GB RAM
+</li><li><strong>Graphics:</strong> OpenGL 4.1 capable GPU
+</li><li><strong>DirectX:</strong> Version 9.0
+</li><li><strong>Storage:</strong> 1 GB available space
+</li></ul>
+<p><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Aftermath</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Aftermath</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:33</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:51:54</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-9/24/2015">9/24/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-50">50</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Free Reign East LLC">Free Reign East LLC</a><br/><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-OP Productions LLC">OP Productions LLC</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Operative">Co-Operative</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Massively Multiplayer Online (MMO)">Massively Multiplayer Online (MMO)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/349700" target="_blank">Steam</a><br/><a href="http://www.willyousurvive.com" target="_blank">Official Website</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Survive against the odds in a giant sandbox MMO world featuring lush forests, dry desert plains, peaceful meadows and the eerie zombies that inhabit the world. <br><br>Scavenge for guns, supplies, survival items and crafting materials in various zones including cities, farms, military bases, abandoned outposts, forgotten rest stops and hundreds of small encampments left behind by survivors before you.  <br><br>Build and protect your shelter, harvest crops, learn crafting blueprints and store your items on our server in your Global Inventory or hide them in a stash box in the world.  <br><br>Be a civilian, a trader, a protector of peace, a ruthless bandit or combination of them all.  Customize your character with hundreds of visual cosmetic items including Headwear, Facewear, Shirts, Jackets and Pants.  Swap your cosmetic items at any time on the fly, unlock weapon skins and show everyone in a safezone that you know where to find the rare items.  <br><br><strong>THE FOLLOWING FEATURES ARE AVAILABLE RIGHT NOW</strong> :<h2 class="bb_tag">Gun Skins</h2><br>Unlock permanent skins for your guns via special Cosmetic Crates that can be found in the world.  These skins display to other players and can be changed at any time.  Skins can also be traded if you already have the skin.  There are even rare permanently skinned guns rumored to be available to those who hunt far and wide.<h2 class="bb_tag">Crafting</h2><br>Fill in the gaps during your looting adventure by crafting useful things you couldn't find.  Break down rubbish items in the world into their core crafting components and repurpose them into high end upgrades to your gear or fashion a new silencer for your gun.  With over 40+ crafting recipes to be unlocked you'll find that almost anything you need can be crafted, provided you've found the right components.  Loot or craft all the items a survivor would need in a zombie apocalypse as well as a few novelty and lethal crafting options that may be above and beyond the usual survival requirements.  Craft shelter, weapons, attachments, armor, ammunition, medical supplies, food, purify water and set up traps for players or set up a nice peaceful garden to harvest.<h2 class="bb_tag">Town Liberation</h2><br>You've looted the city and killed the zombies, but what should you do next?  Liberate the town of course!  Now players have the option to repair generators and fill them with gasoline from a nearby gas pump.  Once all the generators are repaired and enough zombies have been killed then supply drops with epic loots will begin dropping all around the town!  Beware though, other survivors will likely be wanting the supply drops as well.  It is up to you to decide if you share the spoils.<h2 class="bb_tag">Supply Drops</h2><br>Supply shipments containing large caches of weapons, ammo, medical supplies and rare guns have been spotted randomly on the map.  Be lucky enough to find one of these alone and you'll walk away armed to the teeth with enough gear to arm your friends as well!<h2 class="bb_tag">Radio Tower Control</h2><br>Disable zombie sense of smell, sight and sound for a short period of time in key areas to move unhindered and unnoticed by the local zombies.  Find a radio transmission chip and insert it into the console at a functioning radio town in a town to take advantage of this new gameplay.<h2 class="bb_tag">Hundreds of Character Customizations variants</h2><br>Customize your character at any time in game simply by opening the customization menu.  Change out your hat, mask or scarf, upper body and legware to match your surroundings.  Don't stick out like a sore thumb in the middle of the jungle with a desert camo outfit.  Adapt your clothing to fit to your surroundings without taking up bagspace.<h2 class="bb_tag">Place-able Barricades</h2><br>Find fortification in any situation with placeable barricades.  Available both through looting as well as crafting - these essential placable barricades can be the difference between life and death by blocking damage and visibility between you and another survivor attempting to shoot you.  With 7 different barricades to choose from you'll have one for every situation including cleverly placed barricades to enable access to an area not normally accessible.<h2 class="bb_tag">Base Building</h2><br>Ever dreamed of owning a little piece of land overlooking your favorite location in a game?  Now you can with our totally renovated base building system!  Place down your statue to claim your land and build unhindered anywhere on the land that you own.  Place defenses, harvestable crops, cooking racks, water wells, living quarters for your friends and your own personal storage locker!  Owning a base has never been better!<h2 class="bb_tag">Grouping</h2><br>Group with your friends or even make new friends with other players in game.  You can't be back stabbed while in a group so feel free to team up with anyone!  Beware they might lead you to some of their not so friendly &quot;friends&quot; but that's all part of the adventure.  Take on challenges like the new Town Liberation's or raid an enemy base in style in all matching cosmetic outfits!<h2 class="bb_tag">Stat Tracking</h2><br>We now make it easy for you to track your stats in game like time played as well as kills and deaths simply by typing <strong>/stats </strong>in game chat.<h2 class="bb_tag">Harvestable Crops</h2><br>Live off the land and prosper by hiding gardens around the land for your own personal food stash or protect them inside your base.  Once food has been harvested you can choose to eat it on the spot, cook it or use it in a crafting recipe to possibly get even better results.<h2 class="bb_tag">Variety of  Guns</h2><br>Want to play a game where you don't have all the best items the very first hour you play?  We have variety of weapons to find right now.  We have items ranging from crafted and assembled homebrew weapons as well as high grade factory weapons including rare collectors edition versions of guns and different tiers of weapons featuring different recoil, spread and damage ratios.  The rarer the gun, the better the gun.  Show off your guns and skins in a safezone or trade with other players!<h2 class="bb_tag">Melee Weapons</h2><br>As much as everyone always wants to be armed to the teeth with the best assault rifle, everyone has to start somewhere and sometimes the best you've got is a kitchen knife.  We've got you covered from simple household weapons to crafted makeshift weapons as well as heavier duty fire axes and maces that deal brutal damage but swing slow.  We're sure you'll be able to find your niche weapon for beating off zombies.<h2 class="bb_tag">PVP Servers</h2><br>Up the anty with a bit of extra excitement in your zombie apocalypse.  Head into a PVP server where it's no holds barred item drop PVP and test your mettle against other survivors if you happen to cross paths.  Town Liberations are enabled on PVP servers to add a bit more risk to the reward of open world &quot;anything goes&quot; pvp.  Find unique solutions to player disputes on PVP servers not normally possible on PVE.  Expect players to be ruthless.<h2 class="bb_tag">PVE Servers</h2><br>Tired of always feeling like everyone is out to get you for all your precious items and every shadow and sound is terrifying?  We understand that you might feel more like going on an adventure and turning up the ambiance without the constant fear of someone stalking you.  PVE offers a more casual experience for players that just want to practice surviving and looting in the world without PVP combat.<h2 class="bb_tag">Totally new respawn system</h2><br>Now featuring five new respawn options so players really have control over where they are in the world.  Upon your unfortunate death you can now choose between proximity, sleeping bag, base, group or safezone now.  This really helps players meet up with their friends across the map quicker by taking a quick and dirty respawn or allows you the convenience of being across the map and still returning back to your base in a pinch, provided you're okay with dying :)
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
