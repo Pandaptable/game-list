@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>ATLAS</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> ATLAS</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>6h 31m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-12/27/2018">12/27/2018</a> 15:42:50</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:50:33</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-1/7/2023">1/7/2023</a> 16:56:51</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-12/22/2018">12/22/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-54">54</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Grapeshot Games">Grapeshot Games</a><br/><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Instinct Games">Instinct Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Grapeshot Games">Grapeshot Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Operative">Co-Operative</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Massively Multiplayer Online (MMO)">Massively Multiplayer Online (MMO)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://www.playatlas.com/" target="_blank">Official Website</a><br/><a href="https://store.steampowered.com/app/834910/ATLAS/" target="_blank">Steam</a><br/><a href="https://twitter.com/sailtheatlas" target="_blank">Twitter</a><br/><a href="https://atlas.gamepedia.com/ATLAS" target="_blank">Wikia</a><br/><a href="https://www.facebook.com/playatlasgame" target="_blank">Facebook</a><br/><a href="https://www.youtube.com/playatlas" target="_blank">Youtube</a><br/><a href="https://www.reddit.com/r/playatlas" target="_blank">Reddit</a><br/><a href="https://www.twitch.tv/sailtheatlas" target="_blank">Twitch</a><br/><a href="https://discord.gg/playatlas" target="_blank">Discord</a><br/><a href="https://www.twitch.tv/directory/game/ATLAS" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					ATLAS is now crossplay enabled to allow PC and Xbox One players to play together in the same world!<br><br>From the creators of ARK: Survival Evolved comes ATLAS -- the ultimate pirate experience! Explore a persistent, massive open world with thousands of other players simultaneously. Build your ship, assemble your crew, sail the high seas, search for buried treasure, plunder player-built settlements (or replace them with your own), and conquer the world of ATLAS island by island. Wage war against enemy fleets while you single-handedly command large ships of war -- or divide the responsibilities among your trusted shipmates instead. Dive into the watery depths to explore sunken shipwrecks. Team up with other explorers to discover new lands rich with resources, exotic creatures, and ruins of a bygone time. Become a pirate legend in this ultimate quest for fortune and glory!<br><br><strong>Create the Pirate Ship of Your Dreams</strong><br><br>From tiny rafts and dinghies to colossal frigates and galleons, your dream vessel is only a shipyard away with our robust ship customization system. Construct your ship piece by piece, give it a name, design the look of your sails, and decide exactly where all the planks, masts, and gunports on your ship should go.<br><br><strong>Assemble Your Crew</strong><br><br>Recruit other players or hire NPCs to join your crew and aid you on your quest for riches and glory. Whether manning weapons on your ship, hoisting the sails, or helping search for buried treasure on shore, your crew is an essential part of your pirate adventure. Just be sure to keep their stomachs full and give them their fair share of the booty, lest you want a mutiny on your hands…<br><br><strong>Explore a Massive World</strong><br><br>Physically sail in real-time across a vast ocean, featuring over 700 individual landmasses across 45,000 square kilometers. Discover thousands of points of interest over a number of distinct world regions, each with their own unique resources, creatures, secrets, and dangers!<br><br><strong>Shape Your Identity</strong><br><br>Choose from a wide range of character customization and cosmetic options to create your specific pirate look. Unlock skills across 15 different disciplines to form your own unique role in the world of ATLAS.<br><br><strong>Experience Classic Pirate Action</strong> <br><br>Become the world’s greatest swashbuckler, a pistol-packing gunslinger, or perhaps a master cannoneer instead. Engage in fierce raids on land-based strongholds, swing from grappling hooks to board enemy ships, or unload volleys of cannonballs into your foe’s hull. The world of ATLAS has no shortage of ways to dispatch your enemies, be it at the end of a sword... or in true pirate fashion… at the end of a rope.<br><br><strong>Build Your Organization</strong><br><br>Want to create a rich merchant empire that spans from pole to pole? Always wanted to command a fleet of privateers who work for the highest bidder? Or perhaps you’d like to create a government navy and protect the innocent from pirates? In ATLAS, you can build any organization you can think of. Create a settlement for your company and build it piece by piece with our modular construction system. Contest other companies’ land, structures, or ships and add them to your ranks. With the right organization in hand, the world is truly your oyster.<br><br><strong>Choose Between PvP and PvE Play</strong><br><br><i>Choose between PvP or PvE play on our official servers:</i><br><br>On a PvP server, everything is up for grabs: be it ships, player inventories, NPC crewmembers, tames, player-built structures, player-owned territory, and lots of other loot. If you can get your hands on it, you can take it for yourself. Do you have what it takes to become the most notorious pirate on the high seas?<br><br>Care for a less “cutthroat” experience? Join one of our PvE servers and cooperate with thousands of other players to explore the globe, discover new secrets, and even fight mythical creatures together. Create powerful companies with old friends or build an entire player-run town with some new ones. The world of ATLAS is yours to shape!<br><br><strong>Create Mods and Custom Servers</strong><br><br>Want to build a World War II Spitfire? Or how about an Arcadian Steampunk Airship floating through a cloud-world? These examples and much more are provided with the ATLAS Dev Kit, where you can effectively create whatever large-scale action game you want to see: all supported by the database-driven network technology that powers ATLAS. Unofficial ATLAS mods can be of any size and configuration, while a visual map tool lets server hosts layout their own complete custom world -- all dynamically streamed to the client during gameplay.<br><br><strong>Play in Singleplayer and Non-Dedicated Private Sessions</strong><br><br>In addition to experiencing ATLAS on our official/unofficial servers with thousands of other players, you can now enjoy ATLAS by yourself in our Singleplayer mode, or with up to eight friends privately in our Non-Dedicated Server mode. Adjust the game to suit your preferences and enjoy your own private version of ATLAS.<br><br><strong>And Much, Much More</strong><br><br>Only a fraction of ATLAS’ features and content are outlined above, with many more to come throughout the game’s Early Access development period.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
